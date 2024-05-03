@@ -82,16 +82,18 @@ const addNumber: AddNumber = (n1, n2) => {
 
 // ALL ABOUT GENERICS
 
+/*
+
 type GenericArray<T> = Array<T>;
+
+const strArr: GenericArray<string> = ["A", "B", "C", "D"];
+const numArr: GenericArray<number> = [1, 2, 3, 4, 5];
+const boolArr: GenericArray<boolean> = [true, true, false, false, false, false];
 
 interface User {
   firstName: string;
   lastName: string;
 }
-
-const strArr: GenericArray<string> = ["A", "B", "C", "D"];
-const numArr: GenericArray<number> = [1, 2, 3, 4, 5];
-const boolArr: GenericArray<boolean> = [true, true, false, false, false, false];
 
 const objArr: GenericArray<User> = [
   { firstName: "A", lastName: "B" },
@@ -179,3 +181,50 @@ const createCourse = <T extends Course>(course: T) => {
 };
 
 const c1 = createCourse({ id: 1, name: "JS" });
+
+
+*/
+
+// PRACTICE
+
+// GENERIC WITH ARRAY
+
+type GenericArray<Type> = Array<Type>;
+
+const numberArray: GenericArray<number> = [10, 20, 30, 40];
+
+const stringArray: GenericArray<string> = ["A1", "B1", "C1"];
+
+const booleanArray: GenericArray<boolean> = [true, false, false];
+
+interface User<Type> {
+  firstName: string;
+  lastName: string;
+  profession: Type;
+}
+
+interface Profession {
+  job: string;
+  joining: number;
+  leave: number | string;
+}
+
+const objectArray: GenericArray<User<Profession>> = [
+  {
+    firstName: "A",
+    lastName: "B",
+    profession: { job: "C", joining: 2012, leave: "Current" },
+  },
+];
+
+type GenericTuple<A, B, C> = [A, B, C];
+
+const tupleArr1: GenericTuple<number, string, Profession> = [
+  10,
+  "A",
+  { job: "B", joining: 2020, leave: 2023 },
+];
+
+const createTuple = <X, Y, Z>(v1: X, v2: Y, v3: Z): [X, Y, Z] => {
+  return [v1, v2, v3];
+};
