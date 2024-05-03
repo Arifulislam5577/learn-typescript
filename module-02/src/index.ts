@@ -187,7 +187,8 @@ const c1 = createCourse({ id: 1, name: "JS" });
 
 // PRACTICE
 
-// GENERIC WITH ARRAY
+/*
+
 
 type GenericArray<Type> = Array<Type>;
 
@@ -227,4 +228,95 @@ const tupleArr1: GenericTuple<number, string, Profession> = [
 
 const createTuple = <X, Y, Z>(v1: X, v2: Y, v3: Z): [X, Y, Z] => {
   return [v1, v2, v3];
+};
+
+// GENERIC KEY OF
+
+const getValue = <X, Y extends keyof X>(obj: X, key: Y) => {
+  return obj[key];
+};
+
+const student = {
+  name: "A",
+  class: 3,
+  roll: 100,
+};
+
+const result1 = getValue(student, "name");
+
+*/
+
+// ALL ABOUT PROMISE
+
+// const createPromise = (params: number): Promise<string> => {
+//   return new Promise<string>((resolve, reject) => {
+//     if (params >= 10) {
+//       resolve("OK");
+//     } else {
+//       reject("Error");
+//     }
+//   });
+// };
+
+// const getData = async (): Promise<string> => {
+//   const result: string = await createPromise(9);
+//   console.log(result);
+//   return result;
+// };
+
+// getData();
+
+// ALL ABOUT CONDITIONAL TYPE
+
+// type x = number;
+// type y = string;
+
+// type z = x extends number ? true : false;
+
+// type IsPlayer<T> = T extends "A" | "B" ? true : false;
+
+// type Player = IsPlayer<"c">;
+
+// ALL ABOUT MAPPED TYPE
+
+type Square = {
+  height: number;
+  width: number;
+};
+
+type SquareString = {
+  [key in keyof Square]: string;
+};
+
+const square1: SquareString = { height: "5px", width: "5px" };
+
+type SquareDynamic<T> = {
+  [key in keyof T]: T[key];
+};
+
+const square2: SquareDynamic<{ height: number; width: string }> = {
+  height: 10,
+  width: "5xp",
+};
+
+// UTILITY TYPE
+
+type Person = {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  isAdmin: boolean;
+};
+
+type StudentWithPick = Pick<Person, "firstName" | "lastName" | "email">;
+type StudentWithOmit = Omit<Person, "isAdmin">;
+type StudentWithRequire = Required<Person>;
+type StudentWithPartial = Partial<Person>;
+type StudentWithReadOnly = Readonly<Person>;
+
+type Obj = Record<string, number>;
+
+const object1: Obj = {
+  a: 1,
+  b: 2,
 };
