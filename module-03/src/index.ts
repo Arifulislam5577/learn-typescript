@@ -54,7 +54,8 @@ class Backend extends Developer {
 const developer = new Backend("Backend Developer", "31 March", 3000);
 
 console.log(developer.getSalary());
-*/
+
+
 
 class BankAccount {
   readonly id: number;
@@ -82,16 +83,50 @@ class BankAccount {
       (this._balance -= amount)
     );
   }
+
+  get balance() {
+    return this._balance;
+  }
+
+  set addMoney(amount: number) {
+    this._balance += amount;
+  }
 }
 
 const user = new BankAccount(111, "ABC", 1000, "abc@gmail.com");
 
 user.deposit(1000);
 user.withdraw(1000);
-user.withdraw(1000);
-user.withdraw(1000);
-user.deposit(1000);
-user.deposit(1000);
 user.deposit(5000);
 
-console.log(user.id);
+user.addMoney = 1000;
+
+console.log(user.balance);
+*/
+
+// STATIC PROPERTIES
+
+class Counter {
+  static count: number = 0;
+
+  increment(amount?: number): number {
+    if (typeof amount === "number") {
+      return (Counter.count += amount);
+    } else {
+      return (Counter.count += 1);
+    }
+  }
+  decrement(amount?: number): number {
+    if (typeof amount === "number") {
+      return (Counter.count -= amount);
+    } else {
+      return (Counter.count -= 1);
+    }
+  }
+}
+
+const counter1 = new Counter();
+const counter2 = new Counter();
+
+console.log(counter1.increment(10));
+console.log(counter2.increment(10));
